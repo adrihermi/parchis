@@ -15,3 +15,6 @@ h2 {
 	color: white;
 	text-align: center;
 }
+#casaAmarilla div, #casaVerde div, #casaRoja div, #casaAzul div{
+	float: inline-start;
+}
