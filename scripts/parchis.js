@@ -10,7 +10,9 @@ var jugadorRojo = {
 var jugadorAzul = {
     enTablero: [0, 0, 0, 0]
 };
-
+$(function () {
+    $("#lanzar").hide();
+});
 //Función que muestra el tablero de juego
 function mostrarTablero() {
     var tableroParchis =
@@ -192,9 +194,9 @@ function mostrarTablero() {
 //Función que oculta el formulario de registro e inicia partida mostrando el tablero de juego
 function iniciarPartida() {
     $("#sesion").hide();
+    $("#lanzar").show()
     mostrarTablero();
     mostrarFichasCasa();
-    lanzarDado();
     //TODO seleccionTurno(); queda por implementar
 }
 
@@ -213,7 +215,7 @@ function mostrarFichasCasa() {
 //Lanzar dado y capturar valor.
 function lanzarDado(){
     const carasDado = 6; 
-    var dado = Math.floor(Math.random() * (carasDado - 1)) + 1;
+    var dado = Math.floor(Math.random() * (carasDado)) + 1;
     for (let i = 1; i <= carasDado; i++) {
         setInterval( $("#dado").html("<img src = 'imaxes/dados/dado"+i+".png' />"),50000000);    
     }
