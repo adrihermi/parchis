@@ -194,17 +194,28 @@ function iniciarPartida() {
     $("#sesion").hide();
     mostrarTablero();
     mostrarFichasCasa();
+    lanzarDado();
     //TODO seleccionTurno(); queda por implementar
 }
 
-//
+//Coloca las fichas en la casa de cada jugador
 function mostrarFichasCasa() {
     var colorFichas = ["Amarilla", "Azul", "Roja", "Verde"]
     const numeroFichas = 4;
     var casa;
     for (let i = 0; i < colorFichas.length; i++) {
-        for (let j = 0; j < numeroFichas; j++) {
+        for (let j = 1; j <= numeroFichas; j++) {
             $("#casa" + colorFichas[i]).append("<div><img src='imaxes/fichas/ficha" + colorFichas[i] + ".png' id = 'ficha" + colorFichas[i] + j + "'/></div>");
         }
     }
+}
+
+//Lanzar dado y capturar valor.
+function lanzarDado(){
+    const carasDado = 6; 
+    var dado = Math.floor(Math.random() * (carasDado - 1)) + 1;
+    for (let i = 1; i <= carasDado; i++) {
+        setInterval( $("#dado").html("<img src = 'imaxes/dados/dado"+i+".png' />"),50000000);    
+    }
+    $("#dado").html("<img src = 'imaxes/dados/dado"+dado+".png' id='dado"+dado+"'/>")
 }
