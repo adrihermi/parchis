@@ -8,16 +8,17 @@
     <title>Parchis</title>
 </head>
 
-<body onload="mostrarTablero();">
+<body>
     <header>
         <h1>Tablero de parchis</h1>
     </header>
     <main>
-        <div >
+        <div id="sesion">
             <form>
-                
+                <input onclick= "iniciarPartida();" type="button" id="inicioPartida" value="Iniciar Partida" />
             </form>
         </div>
+        <div id="dado"></div>
         <div id="tablero"></div>    
     </main>
     <footer>

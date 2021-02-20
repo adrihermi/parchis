@@ -1,3 +1,4 @@
+//Función que muestra el tablero de juego
 function mostrarTablero(){
     var tableroParchis = 
     '<table>'+
@@ -173,4 +174,10 @@ function mostrarTablero(){
     '</tr>'+
 '</table>';
 tablero.innerHTML = tableroParchis;
+}
+
+//Función que oculta el formulario de registro e inicia partida mostrando el tablero de juego
+function iniciarPartida(){
+    $("#sesion").hide();
+    mostrarTablero();
 }
