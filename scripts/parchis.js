@@ -216,8 +216,21 @@ function mostrarFichasCasa() {
 function lanzarDado(){
     const carasDado = 6; 
     var dado = Math.floor(Math.random() * (carasDado)) + 1;
-    for (let i = 1; i <= carasDado; i++) {
+    /*for (let i = 1; i <= carasDado; i++) {
         setInterval( $("#dado").html("<img src = 'imaxes/dados/dado"+i+".png' />"),50000000);    
+    }*/
+    $("#dado").html("<img src = 'imaxes/dados/dado"+dado+".png' id='dado"+dado+"'/>");
+    jugarTurno(dado);
+}
+//Rotar el turno
+function rotarTurno(){
+    var turno = 0;
+    var orden_turno_jugadores = ["jugadorAmarillo","jugadorVerde","jugadorRojo","jugadorAzul"];
+    turno++;
+    if(turno == 3){
+        turno = 0;
     }
-    $("#dado").html("<img src = 'imaxes/dados/dado"+dado+".png' id='dado"+dado+"'/>")
+}
+//Función jugar turno
+function jugarTurno(dado){
 }
