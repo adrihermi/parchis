@@ -4,6 +4,8 @@
 <head>
     <link rel="StyleSheet" href="css/tablero.css" type="text/css" media="screen">
     <link rel="StyleSheet" href="css/parchis.css" type="text/css" media="screen">
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/parchis.js"></script>
     <meta charset="utf-8">
     <title>Parchis</title>
 </head>
@@ -15,12 +17,13 @@
     <main>
         <div id="sesion">
             <form>
-                <input onclick= "iniciarPartida();" type="button" id="inicioPartida" value="Iniciar Partida" />
+                <input type="button" id="inicioPartida" value="Iniciar Partida" />
             </form>
         </div>
+        <div id="mensaje"></div>
         <div id="dado"></div>
-        <div id="lanzar">
-            <button type="button" onclick="lanzarDado();">Lanzar dado</button>
+        <div id="lanzarDado">
+            <button type="button">Lanzar dado</button>
         </div>
         <div id="tablero"></div>    
     </main>
@@ -28,8 +31,6 @@
         <h2>2021 Desarrollado por Adrián Hermida Rozas</h2>
         <h2>Ciclo Superior Desenvolvemento de Aplicacións Web</h2>
     </footer>
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/parchis.js"></script>
 </body>
 
 </html>
