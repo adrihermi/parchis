@@ -15,17 +15,40 @@
         <h1>Tablero de parchis</h1>
     </header>
     <main>
-        <div id="sesion">
-            <form>
-                <input type="button" id="inicioPartida" value="Iniciar Partida" />
-            </form>
-        </div>
         <div id="mensaje"></div>
-        <div id="dado"></div>
-        <div id="lanzarDado">
-            <button type="button">Lanzar dado</button>
+        <div id='formulario'>
+            <div>
+                <fieldset>
+                    <legend>Registrar jugador</legend>
+                    <div>
+                        <label for="nombre_registroJugador">Nombre jugador:</label>
+                        <input type="text" id="nombre_registroJugador" />
+                    </div>
+                </fieldset>
+            </div>
+            <div>
+                <label for='nombrePartida'>Nombre de la partida</label>
+                <input type='text' id='nombrePartida' />
+            </div>
+            <div>
+                <button id="registrarPartida">Registrar partida</button>
+            </div>
+            <div>
+                <label for='nombreJugador'>Nombre del jugador</label>
+                <input type='text' id='nombreJugador' />
+            </div>
+            <div>
+                <button id='registrarJugador'>Registrar jugador</button>
+            </div>
+            <div>
+                <input type="button" id="inicioPartida" value="Iniciar Partida" />
+            </div>
         </div>
-        <div id="tablero"></div>    
+        <div id="dado"></div>
+        <div>
+            <button type="button" id="lanzarDado">Lanzar dado</button>
+        </div>
+        <div id="tablero"></div>
     </main>
     <footer>
         <h2>2021 Desarrollado por Adrián Hermida Rozas</h2>
