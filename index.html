@@ -6,6 +6,7 @@
     <link rel="StyleSheet" href="css/parchis.css" type="text/css" media="screen">
     <script src="scripts/jquery.js"></script>
     <script src="scripts/parchis.js"></script>
+    <script src="scripts/login.js"></script>
     <meta charset="utf-8">
     <title>Parchis</title>
 </head>
@@ -21,28 +22,48 @@
                 <fieldset>
                     <legend>Registrar jugador</legend>
                     <div>
-                        <label for="nombre_registroJugador">Nombre jugador:</label>
+                        <label for="nombre_registroJugador">Nombre del jugador</label>
                         <input type="text" id="nombre_registroJugador" />
+                    </div>
+                    <div>
+                        <label for="contraseña_registroJugador1">Contraseña</label>
+                        <input type="password" id="contraseña_registroJugador1" />
+                    </div>
+                    <div>
+                        <label for="contraseña_registroJugador2">Confirmar contraseña</label>
+                        <input type="password" id="contraseña_registroJugador2" />
+                    </div>
+                    <div>
+                        <button id='registrarJugador'>Registrar jugador</button>
                     </div>
                 </fieldset>
             </div>
             <div>
-                <label for='nombrePartida'>Nombre de la partida</label>
-                <input type='text' id='nombrePartida' />
+                <fieldset>
+                    <legend>Introduce los datos para una nueva partida</legend>
+                    <div>
+                        <label for='nombrePartida'>Nombre de la partida</label>
+                        <input type='text' id='nombrePartida' />
+                    </div>
+                    <div>
+                        <button id="registrarPartida">Registrar partida</button>
+                    </div>
+                    <div>
+                        <label for='nombreJugador'>Nombre del jugador 1</label>
+                        <input type='text' id='nombreJugador' />
+                    </div>
+                    <div>
+                        <label for='contraseñaJugador'>Contraseña</label>
+                        <input type='password' id='contraseñaJugador' />
+                    </div>
+                    <div>
+                        <button id='añadirJugador'>Añadir jugador</button>
+                    </div>
+                </fieldset>
             </div>
-            <div>
-                <button id="registrarPartida">Registrar partida</button>
-            </div>
-            <div>
-                <label for='nombreJugador'>Nombre del jugador</label>
-                <input type='text' id='nombreJugador' />
-            </div>
-            <div>
-                <button id='registrarJugador'>Registrar jugador</button>
-            </div>
-            <div>
-                <input type="button" id="inicioPartida" value="Iniciar Partida" />
-            </div>
+        </div>
+        <div>
+            <input type="button" id="inicioPartida" value="Iniciar Partida" />
         </div>
         <div id="dado"></div>
         <div>

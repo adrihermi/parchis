@@ -1,5 +1,4 @@
 $(function () {
-    var jugadores_introducidos = 1;
     const jugadores = 4;
     var orden_turno_jugadores = ["amarillo", "verde", "rojo", "azul"];
     var turno = 0;
@@ -19,65 +18,7 @@ $(function () {
         enTablero: [0, 0, 0, 0]
     };
 
-    //Ocultamos los campos para registrar los jugadores
-    $("#nombreJugador").parent().hide();
-    $("#registrarJugador").parent().hide();
-
-    //Ocultamos el botón de inicio partida
-    $("#inicioPartida").parent().hide();
-
-    //Ocultamos el botón para lanzar dado
-    $("#lanzarDado").parent().hide();
-
-    //Al hacer click en el botón registrar partida
-    $("#registrarPartida").on("click", function () {
-        var nota = "";
-        var partida = $("#nombrePartida").val();
-        if (partida == "") {
-            nota = "Introduzca el nombre de la partida por favor."
-        }
-        if (nota != "") {
-            $("#mensaje").text(nota).fadeIn(2000).fadeOut(2000);
-        } else {
-            $.post('php/registrarPartida.php', { nombre_partida: partida })  
-            .done(function () {
-                    $("#mensaje").text("Partida introducida correctamente.").fadeIn(2000).fadeOut(2000);
-                    $("#nombreJugador").parent().show();
-                    $("#registrarJugador").parent().show();
-                    $("#nombrePartida").parent().hide();
-                    $("#registrarPartida").parent().hide();
-                })
-                .fail(function () {
-                    alert("Error en el fichero: registrarPartida.php");
-                })
-        }
-    });
-
-    //Al hacer click en el botón registrar jugador
-    $("#registrarJugador").on("click", function () {
-        var nota = "";
-        var jugador = $("#nombreJugador").val();
-        if (jugador == "") {
-            nota = "Introduzca el nombre del jugador por favor."
-        }
-        if (nota != "") {
-            $("#mensaje").text(nota).fadeIn(2000).fadeOut(2000);
-        } else {
-            $.post('php/registrarJugador.php', { nombre_jugador: jugador })
-                .done(function () {
-                    $("#mensaje").text("Jugador introducido correctamente.").fadeIn(2000).fadeOut(2000);
-                    if (jugadores_introducidos == 4) {
-                        $("#nombreJugador").parent().hide();
-                        $("#registrarJugador").parent().hide();
-                        $("#inicioPartida").parent().show();
-                    }
-                    jugadores_introducidos++;
-                })
-                .fail(function () {
-                    alert("Error en el fichero: registrarJugador.php");
-                })
-        }
-    });
+    
     $("img").css({ 'cursor': 'default', 'pointer-events': 'none' });
     $("#inicioPartida").on('click', iniciarPartida);
     $("#lanzarDado").on('click', lanzarDado);

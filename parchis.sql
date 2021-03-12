@@ -2,12 +2,16 @@ DROP DATABASE IF EXISTS parchis;
 CREATE DATABASE parchis;
 
 CREATE TABLE IF NOT EXISTS `jugadores` (
-  `nombre_jugador` varchar(30) PRIMARY KEY NOT NULL
+  `nombre_jugador` varchar(30) PRIMARY KEY NOT NULL,
   `contraseña` varchar(30)
 ) ENGINE = MyISAM DEFAULT CHARSET = latin1;
 
 CREATE TABLE IF NOT EXISTS `partidas` (
   `nombre_partida` varchar(30) PRIMARY KEY NOT NULL
+) ENGINE = MyISAM DEFAULT CHARSET = latin1;
+
+CREATE TABLE IF NOT EXISTS `resultados`(
+  
 ) ENGINE = MyISAM DEFAULT CHARSET = latin1;
 /*CREATE TABLE IF NOT EXISTS resultados_partidas(
     id_jugador int NOT NULL,
