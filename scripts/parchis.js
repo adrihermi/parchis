@@ -3,26 +3,36 @@ $(function () {
     var orden_turno_jugadores = ["amarillo", "verde", "rojo", "azul"];
     var turno = 0;
     var dado = 0;
-    var lanzamientosIniciales = 0;
     var inicio = false;
     var jugadorAmarillo = {
-        enTablero: [0, 0, 0, 0]
+        fichaamarillo1: 0,
+        fichaamarillo2: 0,
+        fichaamarillo3: 0,
+        fichaamarillo4: 0
     };
     var jugadorVerde = {
-        enTablero: [0, 0, 0, 0]
+        fichaverde1: 0,
+        fichaverde2: 0,
+        fichaverde3: 0,
+        fichaverde4: 0
     };
     var jugadorRojo = {
-        enTablero: [0, 0, 0, 0]
+        ficharojo1: 0,
+        ficharojo2: 0,
+        ficharojo3: 0,
+        ficharojo4: 0
     };
     var jugadorAzul = {
-        enTablero: [0, 0, 0, 0]
+        fichaazul1: 0,
+        fichaazul2: 0,
+        fichaazul3: 0,
+        fichaazul4: 0
     };
 
-    
+
     $("img").css({ 'cursor': 'default', 'pointer-events': 'none' });
     $("#inicioPartida").on('click', iniciarPartida);
     $("#lanzarDado").on('click', lanzarDado);
-    //$("img .").on('click',lanzarDado);
 
     //Función que muestra el tablero de juego
     function mostrarTablero() {
@@ -195,7 +205,7 @@ $(function () {
             '<!-- 20 -->' +
             '<tr>' +
             '<td colspan="2" id="casilla33">33</td>' +
-            '<td class="rojo" colspan="2" id="casill+a34">34</td>' +
+            '<td class="rojo" colspan="2" id="casilla34">34</td>' +
             '<td colspan="2" id="casilla35">35</td>' +
             '</tr>' +
             '</table>';
@@ -205,42 +215,71 @@ $(function () {
     //Función que oculta el formulario de registro e inicia partida mostrando el tablero de juego
     function iniciarPartida() {
         $("#formulario").hide();
-        $("#lanzarDado").show()
+        $("#inicioPartida").parent().hide();
+        $("#lanzarDado").parent().show()
         mostrarTablero();
         mostrarFichasCasa();
         mostrarTurno();
     }
 
-    //Creamos función mostrar el turno 
-
-    function mostrarTurno() {
-        $('#mensaje').text("Turno del jugador " + orden_turno_jugadores[turno] + ". Por favor haga click en el botón 'Lanzar dado' y acontinuación en la ficha que quiere mover.");
-    }
-
-    //Creamos función jugar el turno 
-    function juagarTurno() {
-
-    }
-
     //Coloca las fichas en la casa de cada jugador
     function mostrarFichasCasa() {
         const numeroFichas = 4;
-        var casa;
         for (let i = 0; i < orden_turno_jugadores.length; i++) {
             for (let j = 1; j <= numeroFichas; j++) {
-                $("#casa" + orden_turno_jugadores[i]).append("<div><img src='imaxes/fichas/ficha" + orden_turno_jugadores[i] + ".png' id = 'ficha" + orden_turno_jugadores[i] + j + "'/></div>");
+                $("#casa" + orden_turno_jugadores[i]).append("<div class='cajaFicha'><img src='imaxes/fichas/ficha" + orden_turno_jugadores[i] + ".png' id = 'ficha" + orden_turno_jugadores[i] + j + "'/></div>");
             }
         }
+    }
+
+    //Creamos función mostrar el turno 
+    function mostrarTurno() {
+        $('#mensaje').text("Turno del jugador " + orden_turno_jugadores[turno] + ". Por favor haga click en el botón 'Lanzar dado' y acontinuación en la ficha que quiere mover.");
     }
 
     //Lanzar dado y capturar valor.
     function lanzarDado() {
         const carasDado = 6;
-        dado = Math.floor(Math.random() * (carasDado)) + 1;
-        /*for (let i = 1; i <= carasDado; i++) {
-            setInterval( $("#dado").html("<img src = 'imaxes/dados/dado"+i+".png' />"),50000000);    
-        }*/
+        dado = 5//Math.floor(Math.random() * (carasDado)) + 1;
         $("#dado").html("<img src = 'imaxes/dados/dado" + dado + ".png' id='dado" + dado + "'/>").fadeIn(3000).fadeOut(3000);
+        habilitarFichas();
+    }
+
+    //Habilitar fichas que del jugador y si valor dado es igual a 5 habilitar fichas casa
+    function habilitarFichas() {
+        $("img[src*=" + orden_turno_jugadores[turno] + "]").css({ 'cursor': 'pointer', 'pointer-events': 'auto' });
+        if (dado != 5) {
+            $("#casa" + orden_turno_jugadores[turno]).css({ 'cursor': 'default', 'pointer-events': 'none' });
+        }
+    }
+
+    //Al hacer click sobre una imagen correcta llamamos a la función jugarTurno
+
+    $(".cajaFicha img").on("click", jugarTurno);
+
+    //Creamos función jugar el turno 
+    function jugarTurno() {
+        if ($("img[src*=" + orden_turno_jugadores[turno] + "]").parent().parent().attr("id") == "casa" + orden_turno_jugadores[turno]) {
+            switch (orden_turno_jugadores[turno]) {
+                case "amarillo":
+                    console.log("Hola1")
+                    $(this).parent().html("");
+                    $("#casilla5").html(this);
+                    break;
+                case "verde":
+                    $(this).parent().html("");
+                    $("#casilla56").html(this);
+                    break;
+                case "rojo":
+                    $(this).parent().html("");
+                    $("#casilla39").html(this);
+                    break;
+                case "azul":
+                    $(this).parent().html("");
+                    $("#casilla22").html(this);
+                    break;
+            }
+        }
     }
 
     //Rotar el turno

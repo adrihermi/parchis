@@ -50,7 +50,7 @@ $(function () {
         var jugadorRegistro = $("#nombre_registroJugador").val();
         var contraseña1 = $("#contraseña_registroJugador1").val();
         var contraseña2 = $("#contraseña_registroJugador2").val();
-        if (jugador == "") {
+        if (jugadorRegistro == "") {
             nota = "Introduzca el nombre del jugador por favor.</br>"
         }
         if (contraseña1 == "") {
