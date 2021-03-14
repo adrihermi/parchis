@@ -1,6 +1,9 @@
 $(function () {
     var jugador_añadido = 1;
     jugadores_añadidos = new Array();
+    //Ocultamos el tablero
+    $("#tablero").hide();
+
     //Ocultamos los campos para registrar los jugadores
     $("#nombreJugador").parent().hide();
     $("#añadirJugador").parent().hide();

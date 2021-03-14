@@ -1,6 +1,6 @@
 $(function () {
     const jugadores = 4;
-    var orden_turno_jugadores = ["amarillo", "verde", "rojo", "azul"];
+    var orden_turno_jugadores = ["amarillo", "amarillo", "amarillo", "amarillo"];
     var turno = 0;
     var dado = 0;
     var inicio = false;
@@ -29,8 +29,6 @@ $(function () {
         fichaazul4: 0
     };
 
-
-    $("img").css({ 'cursor': 'default', 'pointer-events': 'none' });
     $("#inicioPartida").on('click', iniciarPartida);
     $("#lanzarDado").on('click', lanzarDado);
 
@@ -41,44 +39,44 @@ $(function () {
             '<!-- 1 -->' +
             '<tr>' +
             '<td id="casaamarillo" class="amarillo" colspan="7" rowspan="7"></td>' +
-            '<td colspan="2" id="casilla1">1</td>' +
+            '<td colspan="2" id="casilla01">1</td>' +
             '<td class="amarillo" colspan="2" id="casilla68">68</td>' +
             '<td colspan="2" id="casilla67">67</td>' +
             '<td id="casaverde" class="verde" colspan="7" rowspan="7"></td>' +
             '</tr>' +
             '<!-- 2 -->' +
             '<tr>' +
-            '<td colspan="2" id="casilla2">2</td>' +
+            '<td colspan="2" id="casilla02">2</td>' +
             '<td class="amarillo" colspan="2">-</td>' +
             '<td colspan="2" id="casilla66">66</td>' +
             '</tr>' +
             '<!-- 3 -->' +
             '<tr>' +
-            '<td colspan="2" id="casilla3">3</td>' +
+            '<td colspan="2" id="casilla03">3</td>' +
             '<td class="amarillo" colspan="2">-</td>' +
             '<td colspan="2" id="casilla65">65</td>' +
             '</tr>' +
             '<!-- 4 -->' +
             '<tr>' +
-            '<td colspan="2" id="casilla4">4</td>' +
+            '<td colspan="2" id="casilla04">4</td>' +
             '<td class="amarillo" colspan="2">-</td>' +
             '<td colspan="2" id="casilla64">64</td>' +
             '</tr>' +
             '<!-- 5 -->' +
             '<tr>' +
-            '<td class="amarillo" colspan="2" id="casilla5">5</td>' +
+            '<td class="amarillo" colspan="2" id="casilla05">5</td>' +
             '<td class="amarillo" colspan="2">-</td>' +
             '<td class="verdeClaro" colspan="2" id="casilla63">63</td>' +
             '</tr>' +
             '<!-- 6 -->' +
             '<tr>' +
-            '<td colspan="2" id="casilla6">6</td>' +
+            '<td colspan="2" id="casilla06">6</td>' +
             '<td class="amarillo" colspan="2">-</td>' +
             '<td colspan="2" id="casilla62">62</td>' +
             '</tr>' +
             '<!-- 7 -->' +
             '<tr>' +
-            '<td colspan="2" id="casilla7">7</td>' +
+            '<td colspan="2" id="casilla07">7</td>' +
             '<td class="amarillo" colspan="2">-</td>' +
             '<td colspan="2" id="casilla61">61</td>' +
             '</tr>' +
@@ -93,7 +91,7 @@ $(function () {
             '<td rowspan="2" id="casilla11">11</td>' +
             '<td rowspan="2" id="casilla10">10</td>' +
             '<td id="vacio"></td>' +
-            '<td id="casilla8">8</td>' +
+            '<td id="casilla08">8</td>' +
             '<td class="amarillo">-</td>' +
             '<td class="amarillo">-</td>' +
             '<td id="casilla60">60</td>' +
@@ -108,7 +106,7 @@ $(function () {
             '</tr>' +
             '<!-- 9 -->' +
             '<tr>' +
-            '<td id="casilla9">9</td>' +
+            '<td id="casilla09">9</td>' +
             '<td class="casa" colspan="4" rowspan="4"></td>' +
             '<td id="casilla59">59</td>' +
             '</tr>' +
@@ -220,21 +218,22 @@ $(function () {
         mostrarTablero();
         mostrarFichasCasa();
         mostrarTurno();
+        $("img").css({ "cursor": "default", "pointer-events": "none" });
     }
 
     //Coloca las fichas en la casa de cada jugador
     function mostrarFichasCasa() {
         const numeroFichas = 4;
         for (let i = 0; i < orden_turno_jugadores.length; i++) {
-            for (let j = 1; j <= numeroFichas; j++) {
-                $("#casa" + orden_turno_jugadores[i]).append("<div class='cajaFicha'><img src='imaxes/fichas/ficha" + orden_turno_jugadores[i] + ".png' id = 'ficha" + orden_turno_jugadores[i] + j + "'/></div>");
+            for (let j = 0; j < numeroFichas; j++) {
+                $("#casa" + orden_turno_jugadores[i]).append("<img src='imaxes/fichas/ficha" + orden_turno_jugadores[i] + ".png' id = 'ficha" + orden_turno_jugadores[i] + j + "' data-color = '" + orden_turno_jugadores[i] + "' />");
             }
         }
     }
 
     //Creamos función mostrar el turno 
     function mostrarTurno() {
-        $('#mensaje').text("Turno del jugador " + orden_turno_jugadores[turno] + ". Por favor haga click en el botón 'Lanzar dado' y acontinuación en la ficha que quiere mover.");
+        $('#mensaje').text("Turno del jugador " + orden_turno_jugadores[turno] + ". Por favor haga click en el botón 'Lanzar dado' y acontinuación en la ficha que quiere mover.").fadeIn(2000);
     }
 
     //Lanzar dado y capturar valor.
@@ -247,45 +246,181 @@ $(function () {
 
     //Habilitar fichas que del jugador y si valor dado es igual a 5 habilitar fichas casa
     function habilitarFichas() {
-        $("img[src*=" + orden_turno_jugadores[turno] + "]").css({ 'cursor': 'pointer', 'pointer-events': 'auto' });
+        $("img[src*=" + orden_turno_jugadores[turno] + "]").css({ "cursor": "pointer", "pointer-events": "auto" });
         if (dado != 5) {
-            $("#casa" + orden_turno_jugadores[turno]).css({ 'cursor': 'default', 'pointer-events': 'none' });
+            $("#casa" + orden_turno_jugadores[turno]).css({ "cursor": "default", "pointer-events": "none" });
         }
+        $("img").on("click", jugarTurno);
     }
-
-    //Al hacer click sobre una imagen correcta llamamos a la función jugarTurno
-
-    $(".cajaFicha img").on("click", jugarTurno);
 
     //Creamos función jugar el turno 
     function jugarTurno() {
-        if ($("img[src*=" + orden_turno_jugadores[turno] + "]").parent().parent().attr("id") == "casa" + orden_turno_jugadores[turno]) {
-            switch (orden_turno_jugadores[turno]) {
+        var posicion_inicial = 0;
+        var posicion_final = 0;
+        color_ficha = orden_turno_jugadores[turno];
+        if ($(this).parent().attr("id") == "casa" + color_ficha) {
+            switch (color_ficha) {
                 case "amarillo":
-                    console.log("Hola1")
-                    $(this).parent().html("");
-                    $("#casilla5").html(this);
+                    posicion_inicial = 5;
+                    if (existebarreraEnemiga(color_ficha, posicion_inicial, posicion_inicial)) {
+                        $('#mensaje').text("Seleccione otra ficha, no se puede realizar el movimiento.").fadeIn(2000);
+                    } else if (comerfichaEnemiga(color_ficha, posicion_final)) {
+                        dado = 20;
+                        jugarTurno();
+                    } else {
+                        $(this).html("");
+                        $("#casilla0" + posicion_inicial).append(this);
+                        rotarTurno();
+                        mostrarTurno();
+                        $("img").css({ "cursor": "default", "pointer-events": "none" });
+                    }
                     break;
                 case "verde":
-                    $(this).parent().html("");
-                    $("#casilla56").html(this);
+                    posicion_inicial = 56;
+                    if (existebarreraEnemiga(color_ficha, posicion_inicial, posicion_inicial)) {
+                        $('#mensaje').text("Seleccione otra ficha, no se puede realizar el movimiento.").fadeIn(2000);
+                    } else if (comerfichaEnemiga(color_ficha, posicion_final)) {
+                        dado = 20;
+                        jugarTurno();
+                    } else {
+                        $(this).html("");
+                        $("#casilla" + posicion_inicial).append(this);
+                        rotarTurno();
+                        mostrarTurno();
+                        $("img").css({ "cursor": "default", "pointer-events": "none" });
+                    }
                     break;
                 case "rojo":
-                    $(this).parent().html("");
-                    $("#casilla39").html(this);
+                    posicion_inicial = 39;
+                    if (existebarreraEnemiga(color_ficha, posicion_inicial, posicion_inicial)) {
+                        $('#mensaje').text("Seleccione otra ficha, no se puede realizar el movimiento.").fadeIn(2000);
+                    } else if (comerfichaEnemiga(color_ficha, posicion_final)) {
+                        dado = 20;
+                        jugarTurno();
+                    } else {
+                        $(this).html("");
+                        $("#casilla" + posicion_inicial).append(this);
+                        rotarTurno();
+                        mostrarTurno();
+                        $("img").css({ "cursor": "default", "pointer-events": "none" });
+                    }
                     break;
                 case "azul":
-                    $(this).parent().html("");
-                    $("#casilla22").html(this);
+                    posicion_inicial = 22;
+                    if (existebarreraEnemiga(color_ficha, posicion_inicial, posicion_inicial)) {
+                        $('#mensaje').text("Seleccione otra ficha, no se puede realizar el movimiento.").fadeIn(2000);
+                    } else if (comerfichaEnemiga(color_ficha, posicion_final)) {
+                        dado = 20;
+                        jugarTurno();
+                    } else {
+                        $(this).html("");
+                        $("#casilla" + posicion_inicial).append(this);
+                        rotarTurno();
+                        mostrarTurno();
+                        $("img").css({ "cursor": "default", "pointer-events": "none" });
+                    }
                     break;
             }
+        } else {
+            posicion_inicial = ($(this).parent().attr("id")).substr(7, 2);
+            posicion_inicial = parseInt(posicion_inicial);
+            console.log(posicion_inicial)
+            if (posicion_inicial + dado > 68) {
+                posicion_final = (posicion_inicial + dado) - 68;
+            } else {
+                posicion_final = posicion_inicial + dado;
+            }
+            if (existebarreraEnemiga(color_ficha, posicion_inicial, posicion_final)) {
+                //
+            } else if (existebarreraAmiga(color_ficha, posicion_final)) {
+                //        
+            } else if (comerfichaEnemiga(color_ficha, posicion_final)) {
+                dado = 20;
+                jugarTurno();
+            } else {
+                $(this).html("");
+                //console.log("#casilla" + posicion_final)
+                $("#casilla" + posicion_final).append(this);
+                rotarTurno();
+                mostrarTurno();
+                $("img").css({ "cursor": "default", "pointer-events": "none" });
+            }
         }
+    }
+
+    //Hay barrera de otro color
+    function existebarreraEnemiga(color_ficha, posicion_inicial, posicion_final) {
+        for (let i = posicion_inicial; i <= posicion_final; i++) {
+            if (i <= 9) {
+                if ($("#casilla0" + i + " img").length == 2) {
+                    $("#casilla0" + i + " img").each(function () {
+                        if ($(this).attr("src") != "imaxes/fichasficha" + color_ficha + ".png") {
+                            return true;
+                        }
+                    });
+                }
+            } else {
+                if ($("#casilla" + i + " img").length == 2) {
+                    $("#casilla" + i + " img").each(function () {
+                        if ($(this).attr("src") != "imaxes/fichasficha" + color_ficha + ".png") {
+                            return true;
+                        }
+                    });
+                }
+            }
+        }
+        return false;
+    }
+    //Hay barrera amiga
+    function existebarreraAmiga(color_ficha, posicion_final) {
+        if (posicion_final <= 9) {
+            if ($("#casilla0" + posicion_final + " img").length == 2) {
+                $("#casilla0" + posicion_final + " img").each(function () {
+                    if ($(this).attr("src") == "imaxes/fichasficha" + color_ficha + ".png") {
+                        return true;
+                    }
+                });
+            }
+        } else {
+            if ($("#casilla" + posicion_final + " img").length == 2) {
+                $("#casilla" + posicion_final + " img").each(function () {
+                    if ($(this).attr("src") == "imaxes/fichasficha" + color_ficha + ".png") {
+                        return true;
+                    }
+                });
+            }
+        }
+        return false
+    }
+
+    //Hay ficha enemiga 
+    function comerfichaEnemiga(color_ficha, posicion_final) {
+        if (posicion_final <= 9) {
+            if ($("#casilla0" + posicion_final + " img").length == 1) {
+                if ($("#casilla0" + posicion_final + " img").attr("src") != "imaxes/fichasficha" + color_ficha + ".png") {
+                    let color = $("#casilla0" + posicion_final + " img").attr("data-color");
+                    $("#casa" + color).append($("#casilla0" + posicion_final + " img"));
+                    $("#casilla0" + posicion_final + " img").html("");
+                    return true;
+                }
+            }
+        } else {
+            if ($("#casilla" + posicion_final + " img").length == 1) {
+                if ($("#casilla" + posicion_final + " img").attr("src") != "imaxes/fichasficha" + color_ficha + ".png") {
+                    let color = $("#casilla0" + posicion_final + " img").attr("data-color");
+                    $("#casa" + color).append($("#casilla0" + posicion_final + " img"));
+                    $("#casilla0" + posicion_final + " img").html("");
+                    return true;
+                }
+            }
+        }
+        return false
     }
 
     //Rotar el turno
     function rotarTurno() {
         turno++;
-        if (turno == 3) {
+        if (turno == 4) {
             turno = 0;
         }
     }
