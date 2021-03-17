@@ -18,3 +18,7 @@ h2 {
 #casaamarillo img, #casaverde img, #casarojo img, #casaazul img{
 	float: inline-start;
 }
+td img{
+	height: 100%;
+	float: left;
+}
