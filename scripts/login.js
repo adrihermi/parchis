@@ -1,9 +1,6 @@
 $(function () {
     var jugador_añadido = 1;
     jugadores_añadidos = new Array();
-    //Ocultamos el tablero
-    $("#tablero").hide();
-
     //Ocultamos los campos para registrar los jugadores
     $("#nombreJugador").parent().hide();
     $("#añadirJugador").parent().hide();
@@ -11,6 +8,9 @@ $(function () {
 
     //Ocultamos el botón de inicio partida
     $("#inicioPartida").parent().hide();
+    
+    //Ocultamos el botón de pasar turno
+    $("#pasarTurno").parent().hide();
 
     //Ocultamos el botón para lanzar dado
     $("#lanzarDado").parent().hide();
