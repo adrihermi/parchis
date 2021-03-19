@@ -4,14 +4,16 @@
 <head>
     <link rel="StyleSheet" href="css/tablero.css" type="text/css" media="screen">
     <link rel="StyleSheet" href="css/parchis.css" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
     <script src="scripts/jquery.js"></script>
     <script src="scripts/parchis.js"></script>
     <script src="scripts/login.js"></script>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
     <meta charset="utf-8">
     <title>Parchis</title>
 </head>
 
-<body>
+<body class="container-fluid">
     <header>
         <h1>Tablero de parchis</h1>
     </header>
@@ -34,7 +36,7 @@
                         <input type="password" id="contraseña_registroJugador2" />
                     </div>
                     <div>
-                        <button id='registrarJugador'>Registrar jugador</button>
+                        <button id='registrarJugador' class="btn btn-info my-2">Registrar jugador</button>
                     </div>
                 </fieldset>
             </div>
@@ -46,7 +48,7 @@
                         <input type='text' id='nombrePartida' />
                     </div>
                     <div>
-                        <button id="registrarPartida">Registrar partida</button>
+                        <button id="registrarPartida" class="btn btn-info my-2">Registrar partida</button>
                     </div>
                     <div>
                         <label for='nombreJugador'>Nombre del jugador 1</label>
@@ -57,20 +59,23 @@
                         <input type='password' id='contraseñaJugador' />
                     </div>
                     <div>
-                        <button id='añadirJugador'>Añadir jugador</button>
+                        <button id='añadirJugador' class="btn btn-info my-2">Añadir jugador</button>
                     </div>
                 </fieldset>
             </div>
         </div>
         <div>
-            <input type="button" id="inicioPartida" value="Iniciar Partida" />
+            <a href="estadisticas.html" id="resultadosJugador" class="btn btn-info my-2">Resultados por jugador</a>
+        </div>
+        <div>
+            <input type="button" id="inicioPartida" value="Iniciar Partida" class="btn btn-info my-2" />
         </div>
         <div id="dado"></div>
         <div>
-            <button type="button" id="lanzarDado">Lanzar dado</button>
+            <button type="button" id="lanzarDado" class="btn btn-info my-2">Lanzar dado</button>
         </div>
         <div>
-            <button type="button" id="pasarTurno">Pasar turno</button>
+            <button type="button" id="pasarTurno" class="btn btn-info my-2">Pasar turno</button>
         </div>
         <div id="tablero"></div>
     </main>

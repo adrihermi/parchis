@@ -1,4 +1,5 @@
 $(function () {
+    var partida = "";
     var jugador_añadido = 1;
     jugadores_añadidos = new Array();
     //Ocultamos los campos para registrar los jugadores
@@ -8,7 +9,7 @@ $(function () {
 
     //Ocultamos el botón de inicio partida
     $("#inicioPartida").parent().hide();
-    
+
     //Ocultamos el botón de pasar turno
     $("#pasarTurno").parent().hide();
 
@@ -18,7 +19,7 @@ $(function () {
     //Al hacer click en el botón registrar partida
     $("#registrarPartida").on("click", function () {
         var nota = "";
-        var partida = $("#nombrePartida").val();
+        partida = $("#nombrePartida").val();
         if (partida == "") {
             nota = "Introduzca el nombre de la partida por favor."
         }
@@ -35,6 +36,7 @@ $(function () {
                             $("#contraseñaJugador").parent().show();
                             $("#nombrePartida").parent().hide();
                             $("#registrarPartida").parent().hide();
+                            $("#nombrePartida").val("");
                             break;
                         case "error":
                             $("#mensaje").text("Ya existe una partida con ese nombre.").fadeIn(2000).fadeOut(2000);
@@ -107,7 +109,7 @@ $(function () {
         if (nota != "") {
             $("#mensaje").html(nota).fadeIn(2000).fadeOut(2000);
         } else {
-            $.post('php/añadirJugador.php', { nombre_jugador: jugadorAñadir, contraseña:contraseñaJugador })
+            $.post('php/añadirJugador.php', { nombre_jugador: jugadorAñadir, contraseña: contraseñaJugador })
                 .done(function (datos) {
                     switch (datos) {
                         case "OK":
@@ -122,6 +124,9 @@ $(function () {
                             $("label[for=nombreJugador]").text("Nombre del jugador " + jugador_añadido)
                             $("#nombreJugador").val("");
                             $("#contraseñaJugador").val("");
+                            $.post('php/registrar_jugadorPartida.php', { nombre_jugador: jugadorAñadir, nombre_partida: partida })
+                                .done()
+                                .fail(function(){alert("Error en el fichero: registrar_jugadorPartida.php");})
                             break;
                         case "error":
                             $("#mensaje").text("Contraseña o jugador erróneos.").fadeIn(2000).fadeOut(2000);

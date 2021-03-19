@@ -193,6 +193,7 @@ $(function () {
 
     //Función que oculta el formulario de registro e inicia partida mostrando el tablero de juego
     function iniciarPartida() {
+        $("#resultadosJugador").hide();
         $("#formulario").hide();
         $("#inicioPartida").parent().hide();
         $("#lanzarDado").parent().show();
@@ -223,7 +224,7 @@ $(function () {
         const carasDado = 6;
         $("#lanzarDado").css({ "cursor": "default", "pointer-events": "none" });
         dado = Math.floor(Math.random() * (carasDado)) + 1;
-        $("#dado").html("<img src = 'imaxes/dados/dado" + dado + ".png' id='dado" + dado + "'/>").fadeIn(3000).fadeOut(3000);
+        $("#dado").html("<img src = 'imaxes/dados/dado" + dado + ".png' id='dado" + dado + "'/>").fadeIn(1500).fadeOut(1500);
         habilitarFichas();
     }
 
@@ -231,7 +232,7 @@ $(function () {
     function habilitarFichas() {
         $("img[src*=" + orden_turno_jugadores[turno] + "]").css({ "cursor": "pointer", "pointer-events": "auto" });
         if (dado != 5) {
-            $("img[src*=" + orden_turno_jugadores[turno] + "]").css({ "cursor": "default", "pointer-events": "none" });
+            $("#casa" + orden_turno_jugadores[turno]+" img").css({ "cursor": "default", "pointer-events": "none" });
             $('#mensaje').text("Jugador " + orden_turno_jugadores[turno] + ", recuerde que al no quitar 5 no puede mover ninguna ficha de su casa. Si no tiene ninguna fuera pasa turno por favor.").fadeIn(2000);
         }
     }
@@ -331,7 +332,11 @@ $(function () {
                 salirComer(posicion_final);
             } else {
                 $(fichaMovida).html("");
-                $("#casilla" + posicion_final).append(fichaMovida);
+                if (posicion_final < 9) {
+                    $("#casilla0" + posicion_final).append(fichaMovida);
+                }else{
+                    $("#casilla" + posicion_final).append(fichaMovida);
+                }
                 rotarTurno();
                 mostrarTurno();
                 $("img").css({ "cursor": "default", "pointer-events": "none" });
