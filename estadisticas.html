@@ -13,14 +13,32 @@
 </head>
 
 <body>
-    <header>
+    <header class="bg-primary">
         <h1>Resultados por jugador</h1>
     </header>
-    <main>
+    <main class="container-fluid">
         <div id="mensaje"></div>
+        <div>
+            <fieldset>
+                <legend>Seleccione un Jugador</legend>
+                <div>
+                    <select name="seleccionJugadores" id="seleccionJugadores"><option value="0">Seleccione Jugador</option></select>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Seleccione un orden</legend>
+                <div>
+                    <label><input type="radio" name="posicionPartidas" value="DESC" checked="checked"/> De mejor a peor posición</label>
+                    <label><input type="radio" name="posicionPartidas" value="ASC"/> De peor a mejor posición</label>
+                </div>
+            </fieldset>
+        </div>
+        <div id="resultadosJugador">
+
+        </div>
         <a href="javascript:history.back()" class="btn btn-info my-2">Volver</a>
     </main>
-    <footer>
+    <footer class="bg-primary">
         <h2>2021 Desarrollado por Adrián Hermida Rozas</h2>
         <h2>Ciclo Superior Desenvolvemento de Aplicacións Web</h2>
     </footer>
